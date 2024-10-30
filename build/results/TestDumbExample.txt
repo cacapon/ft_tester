@@ -1,0 +1,6 @@
+test/TestDumbExample.c:29:test_AverageThreeBytes_should_AverageMidRangeValues:PASS
+test/TestDumbExample.c:30:test_AverageThreeBytes_should_AverageHighValues:PASS
+
+-----------------------
+2 Tests 0 Failures 0 Ignored 
+OK
