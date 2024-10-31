@@ -42,9 +42,9 @@ IGNORE = `grep -s IGNORE $(PATHR)*.txt`
 test: $(BUILD_PATHS) $(RESULTS)
 	@echo "-----------------------\nIGNORES:\n-----------------------"
 	@echo "$(IGNORE)"
-	@echo "-----------------------\nFAILURES:\n-----------------------"
+	@echo "-----------------------\n\033[31mFAILURES\033[0m:\n-----------------------"
 	@echo "$(FAIL)"
-	@echo "-----------------------\nPASSED:\n-----------------------"
+	@echo "-----------------------\n\033[32mPASSED\033[0m:\n-----------------------"
 	@echo "$(PASSED)"
 	@echo "\nDONE"
 
