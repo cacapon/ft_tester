@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:20:23 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 12:31:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 13:39:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,38 @@ void	tearDown(void)
 {
 }
 
+void	*test_ft_calloc_helper(size_t x, size_t y)
+{
+	void *b = ft_calloc(x,y);
+	TEST_ASSERT_NOT_NULL(b);
+	return (b);
+}
 
+void	*test_ft_calloc_ignore_helper(size_t x, size_t y)
+{
+	void *b = ft_calloc(x,y);
+	TEST_ASSERT_NULL(b);
+	return (b);
+}
+
+// memo:	calloc(0,0)は一般的には非NULLポインタが返されることが多い
 void	test_ft_calloc(void)
 {
 	void *b;
-	b = ft_calloc(0,0); // 一般的には非NULLポインタが返されることが多い
-	TEST_ASSERT_NOT_NULL(b);
-	b = ft_calloc(1,1);
-	TEST_ASSERT_NOT_NULL(b);
-	b = ft_calloc(3,5);
-	TEST_ASSERT_NOT_NULL(b);
-	b = ft_calloc(100,50);
-	TEST_ASSERT_NOT_NULL(b);
-	free(b);
+
+	b = test_ft_calloc_helper(0,0);		free(b);
+	b = test_ft_calloc_helper(1,1);		free(b);
+	b = test_ft_calloc_helper(3,5);		free(b);
+	b = test_ft_calloc_helper(100,50);	free(b);
 }
 
 void	test_ft_calloc_ignore(void)
 {
 	void *b;
 
-	b = ft_calloc(-1,1);
-	TEST_ASSERT_NULL(b);
-	b = ft_calloc(1,-1);
-	TEST_ASSERT_NULL(b);
-	b = ft_calloc(10 ,SIZE_MAX);
-	TEST_ASSERT_NULL(b);
-	free(b);
+	b = test_ft_calloc_ignore_helper(-1,1);			free(b);
+	b = test_ft_calloc_ignore_helper(1,-1);			free(b);
+	b = test_ft_calloc_ignore_helper(10,SIZE_MAX);	free(b);
 }
 
 int	main(void)
