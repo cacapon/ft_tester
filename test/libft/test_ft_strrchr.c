@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_strchr.c                                   :+:      :+:    :+:   */
+/*   test_ft_strrchr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:53:31 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:04:41 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:03:28 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	tearDown(void)
 
 void    _helper_normal(char *s, char c)
 {
-    char *result = ft_strchr(s, c);
-    TEST_ASSERT_EQUAL_PTR(result, strchr(s, c));
+    char *result = ft_strrchr(s, c);
+    TEST_ASSERT_EQUAL_PTR(result, strrchr(s, c));
 }
 
 void    _helper_null(char *s, char c)
 {
-    char *result = ft_strchr(s, c);
+    char *result = ft_strrchr(s, c);
     TEST_ASSERT_NULL(result);
 }
 
