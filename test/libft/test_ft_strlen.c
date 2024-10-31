@@ -6,12 +6,11 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 11:52:12 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 12:10:40 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "time.h"
 #include "unity.h"
 
 void	setUp(void)
@@ -31,7 +30,6 @@ void	test_ft_strlen(void)
 
 int	main(void)
 {
-	srand(time(NULL));
 	UNITY_BEGIN();
 	RUN_TEST(test_ft_strlen);
 	return (UNITY_END());

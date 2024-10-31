@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_atoi.c                                     :+:      :+:    :+:   */
+/*   test_ft_bzero.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 12:10:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 12:18:25 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,20 @@ void	tearDown(void)
 {
 }
 
-void	test_ft_atoi(void)
+void	test_ft_bzero(void)
 {
-	TEST_ASSERT_EQUAL_INT(0, ft_atoi(""));
-	TEST_ASSERT_EQUAL_INT(123, ft_atoi("123"));
-	TEST_ASSERT_EQUAL_INT(-456, ft_atoi("    -456"));
-	TEST_ASSERT_EQUAL_INT(0, ft_atoi("    ABC+456"));
-	TEST_ASSERT_EQUAL_INT(0, ft_atoi("XYZ"));
+	char buf[10];
+
+	for (int i = 0; i < 10; i++)
+		buf[i] = 'A';
+	ft_bzero(buf, 10);
+	for (int i = 0; i < 10; i++)
+		TEST_ASSERT_EQUAL_CHAR(buf[i], 0);
 }
 
 int	main(void)
 {
 	UNITY_BEGIN();
-	RUN_TEST(test_ft_atoi);
+	RUN_TEST(test_ft_bzero);
 	return (UNITY_END());
 }
