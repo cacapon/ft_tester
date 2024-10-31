@@ -17,12 +17,12 @@ endif
 .PHONY: test
 
 PATHU = unity/src/
-PATHS = src/
-PATHT = test/
-PATHB = build/
-PATHD = build/depends/
-PATHO = build/objs/
-PATHR = build/results/
+PATHS = src/libft/
+PATHT = test/libft/
+PATHB = build/libft/
+PATHD = build/libft/depends/
+PATHO = build/libft/objs/
+PATHR = build/libft/results/
 
 BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
 
