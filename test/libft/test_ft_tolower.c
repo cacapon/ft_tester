@@ -6,13 +6,12 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:53:31 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:10:42 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:35:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "unity.h"
-#include <string.h>
 
 void	setUp(void)
 {
