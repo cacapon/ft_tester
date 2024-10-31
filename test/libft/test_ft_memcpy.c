@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 14:17:35 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 14:20:20 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	setUp(void)
 void	tearDown(void)
 {
 }
-
-#include <string.h>
 
 void test_ft_memcpy(void)
 {
