@@ -1,3 +1,6 @@
 [submodule "Unity"]
 	path = Unity
 	url = https://github.com/cacapon/Unity.git
+[submodule "src/libft"]
+	path = src/libft
+	url = git@vogsphere-v2.42tokyo.jp:vogsphere/intra-uuid-b2212134-0d50-4332-ab8b-ad531293c47d-6137170-ttsubo
