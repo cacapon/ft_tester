@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 15:50:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 16:19:21 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/10/31 16:38:23 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	test_size_zero(void)
 	size_t result = ft_strlcat(dst, src, 0);
 
 	TEST_ASSERT_EQUAL_STRING("Hello, ", dst);
-	TEST_ASSERT_EQUAL(result, 13);
+	TEST_ASSERT_EQUAL(result, 6);
 }
 
 int	main(void)
@@ -89,6 +89,6 @@ int	main(void)
 	RUN_TEST(test_dst_empty);
 	RUN_TEST(test_src_empty);
 	RUN_TEST(test_src_and_dst_same);
-	RUN_TEST(test_size_zero); //TODO: FAILED
+	RUN_TEST(test_size_zero);
 	return (UNITY_END());
 }
