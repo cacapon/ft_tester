@@ -13,6 +13,10 @@ void	_helper()
 {
 }
 
+void	_helper_null()
+{
+}
+
 void	test_(void){ }
 
 
