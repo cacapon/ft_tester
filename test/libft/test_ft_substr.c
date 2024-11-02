@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:37:38 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:56:54 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/02 11:27:27 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	_helper_null(char *s, unsigned int start, size_t len)
 }
 
 void	test_normal(void){ _helper("Hello world!", 6, 5, "world"); }
-void	test_start_over(void){ _helper_null("Hello world!", 20, 5); }
-void	test_start_eq_len(void){ _helper_null("Hello world!", 13, 5); }
+void	test_start_over(void){ _helper("Hello world!", 20, 5, ""); }
+void	test_start_eq_len(void){ _helper("Hello world!", 13, 5, ""); }
 void	test_head(void){ _helper("Hello world!", 0, 5, "Hello"); }
 void	test_over_length(void){ _helper("Hello world!", 0, 20, "Hello world!"); }
 void	test_s_is_null(void){ _helper_null(NULL, 0, 5); }
