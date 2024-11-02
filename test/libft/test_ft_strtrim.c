@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 20:00:08 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/02 12:46:50 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/02 12:52:51 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	test_hit_flont_back(void){ _helper("===Hello, World===", "=", "Hello, World
 void	test_hit2_flont(void){ _helper("   +++Hello, World", "+ ", "Hello, World");}
 void	test_hit2_flont_back(void){ _helper("   +++Hello, World+++   ", "+ ", "Hello, World");}
 void	test_str_null(void){ _helper(NULL, "X", "");}
-void	test_set_null(void){ _helper("Hello, World", NULL, "");}
+void	test_set_null(void){ _helper("Hello, World", NULL, "Hello, World");}
 void	test_str_set_null(void){ _helper(NULL, NULL,"");}
-void	test_set_nullchar(void){ _helper("Hello, World", "\0", "");}
+void	test_set_nullchar(void){ _helper("Hello, World", "\0", "Hello, World");}
 void	test_str_nullchar(void){ _helper("\0", "x", "");}
 
 
