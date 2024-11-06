@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 13:44:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:25:31 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,44 @@ void	tearDown(void)
 {
 }
 
-void test_ft_isalpha(void)
+void    test_normal_true()
 {
-    // 正しい入力のテスト
-    TEST_ASSERT_TRUE(ft_isalpha('A')); // 大文字
-    TEST_ASSERT_TRUE(ft_isalpha('z')); // 小文字
+    TEST_ASSERT_TRUE(ft_isalpha('A'));
+    TEST_ASSERT_TRUE(ft_isalpha('Z'));
+    TEST_ASSERT_TRUE(ft_isalpha('a'));
+    TEST_ASSERT_TRUE(ft_isalpha('z'));
+}
 
-    // 不正な入力のテスト
+void    test_normal_false()
+{
     TEST_ASSERT_FALSE(ft_isalpha('0')); // 数字
     TEST_ASSERT_FALSE(ft_isalpha('9')); // 数字
     TEST_ASSERT_FALSE(ft_isalpha(' ')); // スペース
     TEST_ASSERT_FALSE(ft_isalpha('@')); // 記号
     TEST_ASSERT_FALSE(ft_isalpha('\n')); // 改行
     TEST_ASSERT_FALSE(ft_isalpha('!')); // 記号
+}
 
-    // 境界条件のテスト
-    TEST_ASSERT_FALSE(ft_isalpha(256)); // ASCII範囲外の値
-    TEST_ASSERT_FALSE(ft_isalpha(-1)); // 負の値
+void    test_boundary()
+{
+    // A-Z
+    TEST_ASSERT_FALSE(ft_isalpha(64));
+    TEST_ASSERT_TRUE(ft_isalpha(65));
+    TEST_ASSERT_TRUE(ft_isalpha(90));
+    TEST_ASSERT_FALSE(ft_isalpha(91));
+
+    // a-z
+    TEST_ASSERT_FALSE(ft_isalpha(64));
+    TEST_ASSERT_TRUE(ft_isalpha(65));
+    TEST_ASSERT_TRUE(ft_isalpha(90));
+    TEST_ASSERT_FALSE(ft_isalpha(91));
 }
 
 int	main(void)
 {
 	UNITY_BEGIN();
-	RUN_TEST(test_ft_isalpha);
+	RUN_TEST(test_normal_true);
+	RUN_TEST(test_normal_false);
+	RUN_TEST(test_boundary);
 	return (UNITY_END());
 }
