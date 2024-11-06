@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:53:31 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 19:04:41 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/06 19:58:24 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ void    test_same_char(void)
     _helper_normal("aaaaa", 'a');
 }
 
+void    test_not_found(void)
+{
+    _helper_null("Hello",-1);
+    _helper_null("Hello",128);
+    _helper_null(NULL, 'H');
+}
+
 int	main(void)
 {
 	UNITY_BEGIN();
@@ -73,5 +80,6 @@ int	main(void)
     RUN_TEST(test_last_char);
     RUN_TEST(test_empty_str);
     RUN_TEST(test_same_char);
+    RUN_TEST(test_not_found);
 	return (UNITY_END());
 }
