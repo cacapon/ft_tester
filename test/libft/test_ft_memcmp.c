@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 14:38:24 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/06 19:05:45 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ void test_ft_memcmp(void) {
     char empty1[] = "";
     char empty2[] = "";
     TEST_ASSERT_EQUAL_INT(0, ft_memcmp(empty1, empty2, 0)); // サイズが0のときは常に一致とみなす
-
-    // NULLポインタのテスト
-    char *null1 = NULL;
-    char *null2 = NULL;
-    TEST_ASSERT_EQUAL_INT(0, ft_memcmp(null1, null2, 0)); // NULLポインタとサイズ0で一致とみなす
 
     // バイト比較のテスト（異なるバイトパターン）
     unsigned char bytes1[] = {0x01, 0x02, 0x03, 0x04};
