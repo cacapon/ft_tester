@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 14:30:14 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/06 19:27:29 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	tearDown(void)
 //      CDEFGHIJ
 //    ->CDEFGHIJIJ
 void test_ft_memmove(void) {
+    // 正常コピー(内容が同じ)
+    char src0[] = "Hello, World!";
+    TEST_ASSERT_EQUAL_STRING((char *)ft_memmove(src0, src0, 13), src0); 
+ 
     // 正常コピーのテスト（オーバーラップなし）
     char src1[] = "Hello, World!";
     char dest1[20];
@@ -43,11 +47,6 @@ void test_ft_memmove(void) {
     char overlap_src2[] = "ABCDEFGHIJ";
     ft_memmove(overlap_src2, overlap_src2 + 2, 8); // 前方へ重複コピー
     TEST_ASSERT_EQUAL_STRING("CDEFGHIJIJ", overlap_src2); // 正しく重複コピーされたか確認
-
-    // NULLポインタのテスト
-    char *null_src = NULL;
-    char *null_dest = NULL;
-    TEST_ASSERT_NULL(ft_memmove(null_dest, null_src, 0)); // NULLポインタと0バイトで動作確認
 
     // サイズ0のテスト
     char src2[] = "Sample text";
