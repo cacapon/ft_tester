@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/01 15:30:44 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/06 14:43:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,19 @@ void	_helper(size_t len, char expected_1st_c, char expected_end_c)
 	TEST_ASSERT_EQUAL_CHAR(expected_end_c, buf[9]);
 }
 
-void	_helper_null(void)
+void	_helper_nullcheck(void)
 {
+	char	*buf;
+
+	buf = NULL;
+	ft_bzero(buf, 1);
+	TEST_ASSERT_NULL(buf);
 }
 
 // buf[10] = "xxxxxxxxxx"をft_bzeroで変更して確認する。
 void	test_normal(void)
 {
-	_helper(10, '\0', '\0');
+	_helper(10, 0, 0);
 }
 void	test_len_zero(void)
 {
@@ -47,7 +52,11 @@ void	test_len_zero(void)
 }
 void	test_len_five(void)
 {
-	_helper(5, '\0', 'x');
+	_helper(5, 0, 'x');
+}
+void	test_b_is_null(void)
+{
+	_helper_nullcheck();
 }
 
 int	main(void)
@@ -56,5 +65,6 @@ int	main(void)
 	RUN_TEST(test_normal);
 	RUN_TEST(test_len_zero);
 	RUN_TEST(test_len_five);
+	RUN_TEST(test_b_is_null);
 	return (UNITY_END());
 }
