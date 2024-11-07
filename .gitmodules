@@ -1,6 +1,3 @@
 [submodule "Unity"]
 	path = Unity
 	url = https://github.com/cacapon/Unity.git
-[submodule "libft"]
-	path = libft
-	url = https://github.com/cacapon/libft.git
