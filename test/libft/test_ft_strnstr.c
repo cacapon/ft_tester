@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 18:53:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/07 10:13:01 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ void    test_no_hit_same_short_haystack_and_needle(void)
     _helper("abc", "abc", 2, NULL);
 }
 
+void	test_big_is_null(void)
+{
+	_helper(NULL, "hay!", 5, NULL);
+}
+
+void	test_little_is_null(void)
+{
+	_helper("hello",NULL, 5, "hello");
+}
 
 int	main(void)
 {
@@ -72,5 +81,6 @@ int	main(void)
 	RUN_TEST(test_no_hit_and_short);
 	RUN_TEST(test_no_hit_haystack_empty);
 	RUN_TEST(test_no_hit_same_short_haystack_and_needle);
+	RUN_TEST(test_big_is_null);
 	return (UNITY_END());
 }
