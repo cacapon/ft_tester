@@ -27,6 +27,7 @@ PATHR = build/libft/results/
 BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
 
 SRCT = $(wildcard $(PATHT)*.c)
+OBJS = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(wildcard $(PATHS)*.c) )
 
 COMPILE=gcc -c
 LINK=gcc
@@ -42,16 +43,16 @@ IGNORE = `grep -s IGNORE $(PATHR)*.txt`
 test: $(BUILD_PATHS) $(RESULTS)
 	@echo "-----------------------\nIGNORES:\n-----------------------"
 	@echo "$(IGNORE)"
-	@echo "-----------------------\nFAILURES:\n-----------------------"
+	@echo "-----------------------\n\033[31mFAILURES\033[0m:\n-----------------------"
 	@echo "$(FAIL)"
-	@echo "-----------------------\nPASSED:\n-----------------------"
+	@echo "-----------------------\n\033[32mPASSED\033[0m:\n-----------------------"
 	@echo "$(PASSED)"
 	@echo "\nDONE"
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
 	-./$< > $@ 2>&1
 
-$(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(PATHO)%.o $(PATHO)unity.o #$(PATHD)test_%.d
+$(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(OBJS) $(PATHO)unity.o
 	$(LINK) -o $@ $^
 
 $(PATHO)%.o:: $(PATHT)%.c

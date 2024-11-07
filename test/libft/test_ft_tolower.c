@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_strlen.c                                   :+:      :+:    :+:   */
+/*   test_ft_tolower.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/10/31 12:10:40 by ttsubo           ###   ########.fr       */
+/*   Created: 2024/10/31 14:53:31 by ttsubo            #+#    #+#             */
+/*   Updated: 2024/10/31 19:35:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,55 @@ void	tearDown(void)
 {
 }
 
-void	test_ft_strlen(void)
+void	_helper(char c, char expected)
 {
-	TEST_ASSERT_EQUAL_INT(0, ft_strlen(""));
-	TEST_ASSERT_EQUAL_INT(7, ft_strlen("42Tokyo"));
-	TEST_ASSERT_EQUAL_INT(0, ft_strlen("\0"));
+	TEST_ASSERT_EQUAL_INT(expected, ft_tolower(c));
+}
+
+void	test_a(void)
+{
+	_helper('A', 'a');
+}
+
+void	test_b(void)
+{
+	_helper('b', 'b');
+}
+
+void	test_c(void)
+{
+	_helper('C', 'c');
+}
+
+void	test_1(void)
+{
+	_helper('1', '1');
+}
+
+void	test_symbol(void)
+{
+	_helper('!', '!');
+}
+
+void	test_space(void)
+{
+	_helper(' ', ' ');
+}
+
+void	test_eof(void)
+{
+	_helper(EOF, EOF);
 }
 
 int	main(void)
 {
 	UNITY_BEGIN();
-	RUN_TEST(test_ft_strlen);
+	RUN_TEST(test_a);
+	RUN_TEST(test_b);
+	RUN_TEST(test_c);
+	RUN_TEST(test_1);
+	RUN_TEST(test_symbol);
+	RUN_TEST(test_space);
+	RUN_TEST(test_eof);
 	return (UNITY_END());
 }
