@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 20:00:08 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/02 12:52:51 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/09 11:58:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ void	_helper_null(char const *s1, char const *set)
 		free(result);
 }
 
+// normal
 void	test_libft_tester_1(void){ _helper("   xxxtripouille", " x", "tripouille");}
 void	test_libft_tester_8(void){ _helper("   xxx   xxx", " x", "");}
-void	test_libft_tester_9(void){ _helper("", "123", "");}
-void	test_hit_flont(void){ _helper("+++Hello, World", "+", "Hello, World");}
 void	test_hit_back(void){ _helper("Hello, World---", "-", "Hello, World");}
+void	test_hit_flont(void){ _helper("+++Hello, World", "+", "Hello, World");}
 void	test_hit_flont_back(void){ _helper("===Hello, World===", "=", "Hello, World");}
-void	test_hit2_flont(void){ _helper("   +++Hello, World", "+ ", "Hello, World");}
 void	test_hit2_flont_back(void){ _helper("   +++Hello, World+++   ", "+ ", "Hello, World");}
+void	test_hit2_flont(void){ _helper("   +++Hello, World", "+ ", "Hello, World");}
+// undifind
+void	test_libft_tester_9(void){ _helper("", "123", "");}
 void	test_str_null(void){ _helper(NULL, "X", "");}
 void	test_set_null(void){ _helper("Hello, World", NULL, "Hello, World");}
 void	test_str_set_null(void){ _helper(NULL, NULL,"");}
