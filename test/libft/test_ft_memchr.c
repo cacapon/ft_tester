@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/06 18:48:49 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/09 12:36:43 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,10 @@ void    test_s_is_null(void)
     TEST_ASSERT_EQUAL_PTR(NULL, ft_memchr(NULL, 'a', 20));
 }
 
-void    test_c_less_than_0(void)
+void    test_libft_tester5(void)
 {
-    const char str[] = "Hello, World!";
-    TEST_ASSERT_EQUAL_PTR(NULL, ft_memchr(str, -1, 20));
-}
-
-void    test_c_greater_than_255(void)
-{
-    const char str[] = "Hello, World!";
-    TEST_ASSERT_EQUAL_PTR(NULL, ft_memchr(str, 256, 20));
+    char s[] = {0, 1, 2 ,3 ,4 ,5};
+    TEST_ASSERT_EQUAL_PTR(ft_memchr(s, 2+256, 3), s+2);
 }
 
 int	main(void)
@@ -64,7 +58,6 @@ int	main(void)
 	UNITY_BEGIN();
 	RUN_TEST(test_ft_memchr);
 	RUN_TEST(test_s_is_null);
-	RUN_TEST(test_c_less_than_0);
-	RUN_TEST(test_c_greater_than_255);
+	RUN_TEST(test_libft_tester5);
 	return (UNITY_END());
 }
