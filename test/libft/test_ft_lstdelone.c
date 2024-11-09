@@ -17,7 +17,8 @@ void	test_normal(void)
 {
 	t_list *l = ft_lstnew(ft_strdup("1"));
 	ft_lstdelone(l, _lstdelone_f);
-	TEST_ASSERT_NULL(l->content);
+	TEST_ASSERT_NOT_NULL(l);
+	TEST_ASSERT_NOT_NULL(l->content);
 }
 
 void	test_lst_null(void)
