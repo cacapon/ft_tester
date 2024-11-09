@@ -33,14 +33,14 @@ void	test_normal2(void)
 void	test_lst_null(void)
 {
 	t_list *l = NULL;
-	ft_lstclear(l, _lstdelone_f);
+	ft_lstclear(&l, _lstdelone_f);
 	TEST_ASSERT_NULL(l);
 }
 
 void	test_dst_null(void)
 {
 	t_list *l = ft_lstnew(ft_strdup("1"));
-	ft_lstclear(l, NULL);
+	ft_lstclear(&l, NULL);
 	TEST_ASSERT_NOT_NULL(l);
 }
 
