@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:20:23 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/06 15:06:43 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/10 12:52:12 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,19 @@ void	test_normal(void)
 	b = _helper(100,50);	free(b);
 }
 
+void	test_args_0(void)
+{
+	void *b;
+
+	b = _helper(0,0);	free(b);
+	b = _helper(1,0);	free(b);
+	b = _helper(0,1);	free(b);
+}
+
 void	test_return_null(void)
 {
 	void *b;
 
-	b = _ignore_helper(0,0);
-	b = _ignore_helper(1,0);
-	b = _ignore_helper(0,1);
 	b = _ignore_helper(-1,1);
 	b = _ignore_helper(1,-1);
 	b = _ignore_helper(10,SIZE_MAX);
@@ -61,6 +67,7 @@ int	main(void)
 {
 	UNITY_BEGIN();
 	RUN_TEST(test_normal);
+	RUN_TEST(test_args_0);
 	RUN_TEST(test_return_null);
 	return (UNITY_END());
 }
