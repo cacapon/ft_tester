@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:49:10 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/10 13:49:39 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:55:13 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ void	test_underflow(void)
 	_helper(0, "-9223372036854775808");
 }
 
+void	test_atoi_same_check(void)
+{
+	char *actual[] = {
+		"0", "42", "-123",  
+		"2147483647", "-2147483648", 
+		"9223372036854775807", "-9223372036854775808",
+		"2234567890", "-2234567890",
+		};
+
+	for (int i=0; i<9; i++)
+		TEST_ASSERT_EQUAL_INT(atoi(actual[i]), ft_atoi(actual[i]));
+}
+
 void	test_str_is_null(void)
 {
 	_helper(0, NULL);
@@ -68,5 +81,6 @@ int	main(void)
 	RUN_TEST(test_overflow);
 	RUN_TEST(test_underflow);
 	RUN_TEST(test_str_is_null);
+	RUN_TEST(test_atoi_same_check);
 	return (UNITY_END());
 }
