@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:37:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/18 12:50:34 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/18 13:34:53 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	test_ft_getc_null(void) 		 { _helper_ft_getc("", "", 0); }
 void	test_ft_putc(void) 					{ _helper_ft_putc("Hello", "Hello", 5); }
 void	test_ft_putc_in_line_break(void) 	{ _helper_ft_putc("Welcome\n42!", "Welcome\n42!", 11); }
 void	test_ft_putc_null(void) 			{ _helper_ft_putc("", "", 0); }
+void	test_ft_putc_eof_char(void) 		{ _helper_ft_putc("\0", "\0", 1); }
 
 int	main(void)
 {
@@ -75,5 +76,7 @@ int	main(void)
 	RUN_TEST(test_ft_putc);
 	RUN_TEST(test_ft_putc_in_line_break);
 	RUN_TEST(test_ft_putc_null);
+	RUN_TEST(test_ft_putc_eof_char);
+
 	return (UNITY_END());
 }
