@@ -13,16 +13,28 @@ else
 	TARGET_EXTENSION=out
 endif
 
-.PHONY: clean
-.PHONY: test
+.PHONY: clean test 
+.PHONY: 
 
 PATHU = Unity/src/
-PATHS = src/libft/
-PATHT = test/libft/
-PATHB = build/libft/
-PATHD = build/libft/depends/
-PATHO = build/libft/objs/
-PATHR = build/libft/results/
+
+ifeq ($(MAKECMDGOALS), libft)
+	PATHS = src/libft/
+	PATHT = test/libft/
+	PATHB = build/libft/
+	PATHD = build/libft/depends/
+	PATHO = build/libft/objs/
+	PATHR = build/libft/results/
+endif
+
+ifeq ($(MAKECMDGOALS), get_next_line)
+	PATHS = src/get_next_line/
+	PATHT = test/get_next_line/
+	PATHB = build/get_next_line/
+	PATHD = build/get_next_line/depends/
+	PATHO = build/get_next_line/objs/
+	PATHR = build/get_next_line/results/
+endif
 
 BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
 
@@ -39,6 +51,12 @@ RESULTS = $(patsubst $(PATHT)test_%.c,$(PATHR)test_%.txt,$(SRCT) )
 PASSED = `grep -s PASS $(PATHR)*.txt`
 FAIL = `grep -s FAIL $(PATHR)*.txt`
 IGNORE = `grep -s IGNORE $(PATHR)*.txt`
+
+all:
+	@echo "Please select a target (e.g. make libft)"
+
+libft: test
+get_next_line: test
 
 test: $(BUILD_PATHS) $(RESULTS)
 	@echo "-----------------------\nIGNORES:\n-----------------------"
