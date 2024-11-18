@@ -50,10 +50,12 @@ test: $(BUILD_PATHS) $(RESULTS)
 	@echo "\nDONE"
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
-	-./$< > $@ 2>&1
+	$(info Run Test $< > Output $@)
+	@-./$< > $@ 2>&1
 
 $(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(OBJS) $(PATHO)unity.o
-	$(LINK) -o $@ $^
+	$(info Link $@)
+	@$(LINK) -o $@ $^
 
 $(PATHO)%.o:: $(PATHT)%.c
 	$(COMPILE) $(CFLAGS) $< -o $@
