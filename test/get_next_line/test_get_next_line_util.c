@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:37:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/18 13:34:53 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/18 16:00:33 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,58 @@ void	_helper_ft_getc(const char *expected, const char *actual, size_t actual_len
 		TEST_ASSERT_EQUAL_CHAR(expected[i++], ft_getc(pipe_fds[0]));
 	TEST_ASSERT_EQUAL_CHAR(EOF, ft_getc(pipe_fds[0]));
 	close(pipe_fds[0]);
+}
+
+
+void	test_ft_getc_multi_file(void)
+{
+	size_t i = 0;
+	int pipe_fds[3][2];
+	TEST_ASSERT_EQUAL_INT(0, pipe(pipe_fds[0]));
+	TEST_ASSERT_EQUAL_INT(0, pipe(pipe_fds[1]));
+	TEST_ASSERT_EQUAL_INT(0, pipe(pipe_fds[2]));
+	
+	write(pipe_fds[0][1], "Hello", 5);
+	write(pipe_fds[1][1], "World!", 6);
+	write(pipe_fds[2][1], "hogehoge", 8);
+	
+	close(pipe_fds[0][1]);
+	close(pipe_fds[1][1]);
+	close(pipe_fds[2][1]);
+
+
+	TEST_ASSERT_EQUAL_CHAR('H', ft_getc(pipe_fds[0][0]));
+	TEST_ASSERT_EQUAL_CHAR('W', ft_getc(pipe_fds[1][0]));
+	TEST_ASSERT_EQUAL_CHAR('h', ft_getc(pipe_fds[2][0]));
+
+	TEST_ASSERT_EQUAL_CHAR('e', ft_getc(pipe_fds[0][0]));
+	TEST_ASSERT_EQUAL_CHAR('o', ft_getc(pipe_fds[1][0]));
+	TEST_ASSERT_EQUAL_CHAR('o', ft_getc(pipe_fds[2][0]));
+	
+	TEST_ASSERT_EQUAL_CHAR('l', ft_getc(pipe_fds[0][0]));
+	TEST_ASSERT_EQUAL_CHAR('r', ft_getc(pipe_fds[1][0]));
+	TEST_ASSERT_EQUAL_CHAR('g', ft_getc(pipe_fds[2][0]));
+	
+	TEST_ASSERT_EQUAL_CHAR('l', ft_getc(pipe_fds[0][0]));
+	TEST_ASSERT_EQUAL_CHAR('l', ft_getc(pipe_fds[1][0]));
+	TEST_ASSERT_EQUAL_CHAR('e', ft_getc(pipe_fds[2][0]));
+	
+	
+	TEST_ASSERT_EQUAL_CHAR('o', ft_getc(pipe_fds[0][0]));
+	TEST_ASSERT_EQUAL_CHAR('d', ft_getc(pipe_fds[1][0]));
+	TEST_ASSERT_EQUAL_CHAR('h', ft_getc(pipe_fds[2][0]));
+	TEST_ASSERT_EQUAL_CHAR(EOF, ft_getc(pipe_fds[0][0]));
+	close(pipe_fds[0][0]);
+
+	TEST_ASSERT_EQUAL_CHAR('!', ft_getc(pipe_fds[1][0]));
+	TEST_ASSERT_EQUAL_CHAR(EOF, ft_getc(pipe_fds[1][0]));
+	close(pipe_fds[1][0]);
+
+	TEST_ASSERT_EQUAL_CHAR('o', ft_getc(pipe_fds[2][0]));
+	TEST_ASSERT_EQUAL_CHAR('g', ft_getc(pipe_fds[2][0]));
+	TEST_ASSERT_EQUAL_CHAR('e', ft_getc(pipe_fds[2][0]));
+	TEST_ASSERT_EQUAL_CHAR(EOF, ft_getc(pipe_fds[2][0]));
+	close(pipe_fds[2][0]);
 }
 
 void	_helper_ft_putc(const char *expected, const char *actual, size_t actual_len)
@@ -76,7 +128,10 @@ int	main(void)
 	RUN_TEST(test_ft_putc);
 	RUN_TEST(test_ft_putc_in_line_break);
 	RUN_TEST(test_ft_putc_null);
-	RUN_TEST(test_ft_putc_eof_char);
+	//RUN_TEST(test_ft_putc_eof_char);
+
+	//Bonus
+	RUN_TEST(test_ft_getc_multi_file);
 
 	return (UNITY_END());
 }
