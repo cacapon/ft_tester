@@ -6,7 +6,7 @@
 /*   By: ttsubo <ttsubo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:37:32 by ttsubo            #+#    #+#             */
-/*   Updated: 2024/11/18 16:27:57 by ttsubo           ###   ########.fr       */
+/*   Updated: 2024/11/19 13:14:47 by ttsubo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ void test_get_next_line_multi_fd(void) {
 	close(pipe_fds[2][0]);
 }
 
+void	test_get_next_line_fd_notfound() {
+	TEST_ASSERT_NULL(get_next_line(-1));
+}
+
 int	main(void)
 {
 	UNITY_BEGIN();
@@ -114,6 +118,7 @@ int	main(void)
 	//RUN_TEST(test_get_next_eof_char);
 	RUN_TEST(test_get_next_line_no_linebreak);
 	RUN_TEST(test_get_next_empty);
+	RUN_TEST(test_get_next_line_fd_notfound);
 
 	// bonus
 	RUN_TEST(test_get_next_line_multi_fd);
