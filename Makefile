@@ -13,8 +13,7 @@ else
 	TARGET_EXTENSION=out
 endif
 
-.PHONY: clean test 
-.PHONY: 
+.PHONY: clean test
 
 PATHU = Unity/src/
 
@@ -71,9 +70,9 @@ $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
 	@-./$< > $@ 2>&1
 
 # testオブジェクト、静的ライブラリ、unityオブジェクトをリンクします。
-$(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(PATHO)%.a $(PATHO)unity.o
+$(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(PATHO)$(MAKECMDGOALS).a $(PATHO)unity.o
 	$(info Link $@)
-	$(LINK) -o $@ $^
+	@$(LINK) -o $@ $^
 
 # testオブジェクトをコンパイルします。
 $(PATHO)%.o:: $(PATHT)%.c
