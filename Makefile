@@ -8,7 +8,7 @@ ifeq ($(OS),Windows_NT)
   endif
 	TARGET_EXTENSION=exe
 else
-	CLEANUP = rm -f
+	CLEANUP = rm -rf
 	MKDIR = mkdir -p
 	TARGET_EXTENSION=out
 endif
@@ -22,7 +22,6 @@ ifeq ($(MAKECMDGOALS), libft)
 	PATHS = src/libft/
 	PATHT = test/libft/
 	PATHB = build/libft/
-	PATHD = build/libft/depends/
 	PATHO = build/libft/objs/
 	PATHR = build/libft/results/
 endif
@@ -39,7 +38,7 @@ endif
 BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
 
 SRCT = $(wildcard $(PATHT)*.c)
-OBJS = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(wildcard $(PATHS)*.c) )
+OBJS = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(wildcard $(PATHS)*.c) ) # ここを修正する
 
 COMPILE=gcc -c
 LINK=gcc
@@ -53,7 +52,6 @@ FAIL = `grep -s FAIL $(PATHR)*.txt`
 IGNORE = `grep -s IGNORE $(PATHR)*.txt`
 
 all:
-	@echo "Please select a target (e.g. make libft)"
 
 libft: test
 get_next_line: test
@@ -67,31 +65,37 @@ test: $(BUILD_PATHS) $(RESULTS)
 	@echo "$(PASSED)"
 	@echo "\nDONE"
 
+# テスト実行します、結果をresultに%.txt形式で出力します。
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
 	$(info Run Test $< > Output $@)
 	@-./$< > $@ 2>&1
 
-$(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(OBJS) $(PATHO)unity.o
+# testオブジェクト、静的ライブラリ、unityオブジェクトをリンクします。
+$(PATHB)test_%.$(TARGET_EXTENSION): $(PATHO)test_%.o $(PATHO)%.a $(PATHO)unity.o
 	$(info Link $@)
-	@$(LINK) -o $@ $^
+	$(LINK) -o $@ $^
 
+# testオブジェクトをコンパイルします。
 $(PATHO)%.o:: $(PATHT)%.c
 	$(COMPILE) $(CFLAGS) $< -o $@
 
-$(PATHO)%.o:: $(PATHS)%.c
-	$(COMPILE) $(CFLAGS) $< -o $@
+# テストコードをコンパイルします。 TODO: 静的ライブラリを使うものと使わないもので分岐させる
+# $(PATHO)%.o:: $(PATHS)%.c
+# 	$(COMPILE) $(CFLAGS) $< -o $@
 
+$(PATHO)libft.a: $(PATHS)libft.a
+	cp $< $@
+
+# 静的ライブラリのコンパイル TODO:他のプロジェクトでも対応できる様にする。
+$(PATHS)$(MAKECMDGOALS).a:
+	$(MAKE) -C $(PATHS) bonus
+
+# unityのコンパイル
 $(PATHO)%.o:: $(PATHU)%.c $(PATHU)%.h
 	$(COMPILE) $(CFLAGS) $< -o $@
 
-$(PATHD)%.d:: $(PATHT)%.c
-	$(DEPEND) $@ $<
-
 $(PATHB):
 	$(MKDIR) $(PATHB)
-
-$(PATHD):
-	$(MKDIR) $(PATHD)
 
 $(PATHO):
 	$(MKDIR) $(PATHO)
@@ -100,11 +104,8 @@ $(PATHR):
 	$(MKDIR) $(PATHR)
 
 clean:
-	$(CLEANUP) $(PATHO)*.o
-	$(CLEANUP) $(PATHB)*.$(TARGET_EXTENSION)
-	$(CLEANUP) $(PATHR)*.txt
+	$(CLEANUP) build/
 
 .PRECIOUS: $(PATHB)test_%.$(TARGET_EXTENSION)
-.PRECIOUS: $(PATHD)%.d
 .PRECIOUS: $(PATHO)%.o
 .PRECIOUS: $(PATHR)%.txt
